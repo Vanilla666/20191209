@@ -25,7 +25,9 @@ function writeUserData(userId) {
 	    email: document.getElementById("email_test").value,
 	    personal_website: document.getElementById("web_test").value
 	})
-	.then(function () {alert("建立成功");})
+	.then(function () {alert("建立成功");
+	
+	})
 	.catch(function () {alert("伺服器發生錯誤，請稍後再試");});
 }
 //writeUserData(1, 'Gary', 'gary@nutc.edu.tw', 'http://gary.tw')
@@ -37,6 +39,7 @@ function readUserData(userId) {
 	db.ref('/users/' + userId).once('value', function (snapshot) {
 		var data = snapshot.val();
 	    console.log(data);
+	    document.getElementById("test_text").innerHTML = "userId: " + userId +"<br>"+ "username: "+ data.username + "<br>" + "email: "+ data.email + "<br>" +"personal_website: "+  data.personal_website;
 	});
 }
 // function writeUserData(){
@@ -48,6 +51,7 @@ function readUserData(userId) {
 	註冊:名 <input type="text" id="name_test"> <br>
 	註冊:email <input type="text" id="email_test"><br>
 	註冊:網域名 <input type="text" id="web_test">  
+	<p id="test_text"></p>
 	<!-- <button onclick="writeUserData(1, 'john', 'john@nutc.edu.tw', 'http://gary.tw')"> write</button> -->
 	<button onclick="writeUserData(1)"> write</button>
 	<br>
